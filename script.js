@@ -6,6 +6,7 @@ const getRandomPokemon = async () => {
         return await response.json();
     } catch (error) {
         console.error('Failed to fetch Pokémon data:', error);
+        return null; // Return null on error
     }
 };
 
@@ -18,7 +19,8 @@ const displayPokemon = async () => {
     const pokemonImage = pokemon.sprites.front_default;
 
     // Displaying the data in the HTML
-    document.getElementById('pokemon-name').innerText = `Name: ${pokemonName}`;
+    document.getElementById('pokemon-name').innerText = `Name: ${pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1)}`; // Capitalizing the name
     document.getElementById('pokemon-types').innerText = `Types: ${pokemonTypes}`;
     document.getElementById('pokemon-image').src = pokemonImage;
+    document.getElementById('pokemon-image').alt = `Image of ${pokemonName}`; // Add alt text for accessibility
 };
